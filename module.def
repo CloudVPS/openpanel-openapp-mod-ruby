@@ -46,6 +46,17 @@ class RubyAdmin                 < uuid 2360845c-a8e8-4c83-90af-d97eb9db6cba
 								< example sPswd13t
 								< regexp [:password:]
 
+	enum backupmethod			: Backup Method
+								< default Mysqldump
+								< gridwidth 25
+
+# ============================================================================
+# ENUMS
+# ============================================================================
+enum backupmethod
+	value mysqldump : Mysqldump
+	value xtrabackup : Xtrabackup (Requires manual install)
+
 # ============================================================================
 # AUTHD
 # ============================================================================

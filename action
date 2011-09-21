@@ -4,14 +4,22 @@
 RubyAdmin.update() {
   appid=ruby
   newpass=$(coreval RubyAdmin password)
+  method=$(coreval RubyAdmin backupmethod)
   [ ! -z ${newpass} ] &&  authd runscript openapp-call "$appid" passwd "$newpass"
+  if [ -x /usr/bin/openapp-mysql-backupmethod ]; then authd runscript openapp-call "$appid" backupmethod "$method"; fi
 }
 
 Module.getconfig() {
+METHOD=mysqldump
+
+CHECKLOC=/etc/openapp-backup/scripts.d/xtrabackup
+[ -L ${CHECKLOC} -o -f ${CHECKLOC} ] && METHOD=xtrabackup
+
   cat << _EOF_
   <openpanel.module>
     <dict id="RubyAdmin" type="class">
       <dict id="openapp-ruby-settings" type="object">
+	    <enum id="backupmethod">${METHOD}</enum>
       </dict>
     </dict>
 	<dict id="OpenCORE:Result">
