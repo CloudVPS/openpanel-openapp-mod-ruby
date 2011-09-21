@@ -28,6 +28,7 @@ class RubyAdmin                 < uuid 2360845c-a8e8-4c83-90af-d97eb9db6cba
 								< uniquein class
 								< shortname rubyadmin
 								< singleton openapp-ruby-settings
+                                < explanation ruby.html
 								< title Ruby
 								< description Ruby admin password
 								< sortindex 10
@@ -41,7 +42,7 @@ class RubyAdmin                 < uuid 2360845c-a8e8-4c83-90af-d97eb9db6cba
 								< example Admin
 								< textwidth 16
 								
-	password password			: Password for phpmyadmin (User openapp)
+	password password			: Password for phpMyAdmin
 								< textwidth 16
 								< example sPswd13t
 								< regexp [:password:]
@@ -55,7 +56,7 @@ class RubyAdmin                 < uuid 2360845c-a8e8-4c83-90af-d97eb9db6cba
 # ============================================================================
 enum backupmethod
 	value mysqldump : Mysqldump
-	value xtrabackup : Xtrabackup (Requires manual install)
+	value xtrabackup : Xtrabackup
 
 # ============================================================================
 # AUTHD
