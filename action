@@ -1,0 +1,26 @@
+#!/bin/bash
+. /var/openpanel/api/sh/module.sh
+
+RubyAdmin.update() {
+  appid=ruby
+  newpass=$(coreval RubyAdmin password)
+  [ ! -z ${newpass} ] &&  authd runscript openapp-call "$appid" passwd "$newpass"
+}
+
+Module.getconfig() {
+  cat << _EOF_
+  <openpanel.module>
+    <dict id="RubyAdmin" type="class">
+      <dict id="openapp-ruby-settings" type="object">
+      </dict>
+    </dict>
+	<dict id="OpenCORE:Result">
+      <integer id="error">0</integer>
+      <string id="message">OK</string>
+    </dict>
+  </openpanel.module>
+_EOF_
+  exitquiet
+}
+
+implement OpenAppRuby.module
